@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/MDU2">
+    <fragment
+        android:id="@+id/MDU2"
+        android:name="com.mmstq.mduarchive.fragment.MDU"
+        android:label="fragment_mdu"
+        tools:layout="@layout/fragment_mdu" >
+        <action
+            android:id="@+id/action_MDU2_to_UIET"
+            app:destination="@id/UIET" />
+    </fragment>
+    <fragment
+        android:id="@+id/UIET"
+        android:name="com.mmstq.mduarchive.fragment.UIET"
+        android:label="UIET" />
+</navigation>
