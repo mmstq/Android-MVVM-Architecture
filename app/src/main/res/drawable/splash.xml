@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@color/colorPrimary" />
+
+    <item>
+        <scale
+            android:scaleWidth="100dp"
+            android:useIntrinsicSizeAsMinimum="true"
+            android:level="@integer/default_animation_duration"
+            android:scaleHeight="100dp">
+            <bitmap
+                android:gravity="center"
+                android:src="@drawable/message"
+                android:tint="@color/white" />
+        </scale>
+    </item>
+
+</layer-list>

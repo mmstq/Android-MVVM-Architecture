@@ -1,6 +1,7 @@
 package com.mmstq.mduarchive.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.mmstq.mduarchive.network.Repository
 import com.mmstq.mduarchive.database.getDatabase
@@ -44,7 +45,9 @@ class MDUViewModel(application: Application): AndroidViewModel(application) {
                 _isLoading.value = false
                 _eventNetworkError.value = false
             }catch (e:Exception){
+                Log.d("error", "i ran")
                 _isLoading.value = false
+                Log.d("errorLoading", "message ${e.message} lmessage:${e.localizedMessage} stacktrace:${e.stackTrace}", e.cause)
                 e.printStackTrace()
                 if(notice.value.isNullOrEmpty()){
                     _eventNetworkError.value = true

@@ -10,10 +10,9 @@ import com.mmstq.mduarchive.model.Notice
 data class NoticeEntity constructor(
     @PrimaryKey
     @NonNull
-    var title: String = "",
-    var index: Int,
-    var date: String = "",
     var link: String = "",
+    var title: String = "",
+    var date: String = "",
     var source: String = ""
 )
 
@@ -21,7 +20,6 @@ data class NoticeEntity constructor(
 fun List<NoticeEntity>.asDomainModel(): List<Notice> {
     return map {
         Notice(
-            index = it.index,
             title = it.title,
             date = it.date,
             link = it.link)

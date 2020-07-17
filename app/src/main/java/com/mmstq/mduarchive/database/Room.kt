@@ -7,7 +7,7 @@ import androidx.room.*
 @Dao
 interface NoticeDao{
 
-    @Query("select * from notice where source like :from order by `index` ASC")
+    @Query("select * from notice where source like :from")
     fun getNotice(from:String): LiveData<List<NoticeEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -6,7 +6,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Notice (
-    var index: Int,
     var title: String = "",
     var date: String = "",
     var link: String = ""
@@ -14,7 +13,6 @@ data class Notice (
 fun List<Notice>.asDatabaseModel(): List<NoticeEntity> {
     return map {
         NoticeEntity(
-            index = it.index,
             title = it.title,
             date = it.date,
             link = it.link)

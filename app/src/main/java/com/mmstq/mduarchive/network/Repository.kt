@@ -32,7 +32,6 @@ class Repository(private val database:NoticeDatabase) {
             database.noticeDao.insertAll(notices.items.map { NoticeEntity(
                 title = it.title,
                 date = it.date,
-                index = it.index,
                 link = it.link,
                 source = from
             ) })

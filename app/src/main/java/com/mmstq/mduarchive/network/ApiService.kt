@@ -14,10 +14,10 @@ import retrofit2.http.GET
 import javax.inject.Singleton
 
 interface ApiService{
-    @GET(value = "notice?from=mdu")
+    @GET(value = "notice/notice?from=mdu")
     fun getNoticesFromMDUAsync(): Deferred<Items>
 
-    @GET(value = "notice?from=uiet")
+    @GET(value = "notice/notice?from=uiet")
     fun getNoticesFromUIETAsync(): Deferred<Items>
 }
 
@@ -26,8 +26,11 @@ object ApiNetwork{
         .add(KotlinJsonAdapterFactory())
         .build()
 
+    private const val BASE_URL = "https://zuko.eu-gb.mybluemix.net/"
+//    private const val BASE_URL = "http://10.0.2.2:5000/"
+
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://zuko.eu-gb.mybluemix.net/")
+        .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
