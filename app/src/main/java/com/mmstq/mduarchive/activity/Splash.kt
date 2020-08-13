@@ -17,7 +17,7 @@ class Splash : AppCompatActivity() {
         activityScope.launch {
             delay(2000)
 
-            val intent  = Intent(this@Splash, MainActivity::class.java)
+            val intent  = Intent(this@Splash, HomeScreen::class.java)
 
             startActivity(intent)
 

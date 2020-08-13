@@ -8,14 +8,17 @@ import com.squareup.moshi.JsonClass
 data class Notice (
     var title: String = "",
     var date: String = "",
-    var link: String = ""
+    var link: String = "",
+    var storedOn:Double
 )
 fun List<Notice>.asDatabaseModel(): List<NoticeEntity> {
     return map {
         NoticeEntity(
             title = it.title,
             date = it.date,
-            link = it.link)
+            link = it.link,
+            storedOn = it.storedOn
+        )
     }
 }
 

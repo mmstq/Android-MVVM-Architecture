@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:autoTransition="jumpToStart"
+        motion:duration="1300">
+        <OnClick
+            motion:clickAction="toggle"
+            motion:targetId="@id/imageView" />
+        <KeyFrameSet>
+            <KeyAttribute
+                android:rotation="360"
+                motion:framePosition="10"
+                android:translationX="8dp"
+                motion:motionTarget="@id/imageView"
+                motion:transitionEasing="accelerate" />
+
+            <KeyAttribute
+                motion:framePosition="80"
+                motion:motionTarget="@id/button"
+                android:translationX="8dp"
+                motion:transitionEasing="accelerate" />
+
+
+            <KeyAttribute
+                motion:framePosition="100"
+                motion:motionTarget="@id/button"
+                android:translationX="0dp"
+                motion:transitionEasing="accelerate" />
+            
+
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/imageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            motion:visibilityMode="ignore"
+            android:visibility="invisible"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/button"
+            motion:layout_constraintTop_toTopOf="@+id/button"
+            motion:layout_constraintEnd_toStartOf="@+id/button" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/imageView"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/button"
+            motion:layout_constraintTop_toTopOf="@+id/button"
+            motion:layout_constraintEnd_toStartOf="@+id/button"/>
+    </ConstraintSet>
+</MotionScene>

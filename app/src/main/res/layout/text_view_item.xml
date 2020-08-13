@@ -22,9 +22,11 @@
         app:cardBackgroundColor="@color/colorPrimary"
         android:layout_margin="4dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layoutDescription="@xml/text_view_item_xml_constraintlayout_scene">
 
             <TextView
                 android:id="@+id/title"
@@ -33,9 +35,10 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="8dp"
-                android:fontFamily="@font/ubuntu_regular"
+                android:fontFamily="@font/ubuntu_light"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:textSize="15sp"
+                android:textFontWeight="300"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -63,6 +66,7 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/ubuntu_light"
                 android:textColor="@android:color/white"
+
                 app:dateString="@{notice}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +82,7 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/button_shape"
                 android:fontFamily="@font/ubuntu_light"
-                android:onClick="@{()->listener.onClick(notice)}"
+                android:onClick="@{(v)->listener.onClick(v, notice)}"
                 android:text="View"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
@@ -89,14 +93,16 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="22dp"
+                android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:src="@drawable/ic_new"
+                android:visibility="invisible"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/button"
-                app:layout_constraintEnd_toStartOf="@+id/button"
-                app:layout_constraintTop_toTopOf="@+id/button"
-                app:srcCompat="@drawable/ic_new" />
+                app:layout_constraintBottom_toBottomOf="@id/button"
+                app:layout_constraintTop_toTopOf="@id/button"
+                app:layout_constraintBaseline_toBaselineOf="@id/button"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
     </androidx.cardview.widget.CardView>
 </layout>

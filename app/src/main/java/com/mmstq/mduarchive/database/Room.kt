@@ -1,34 +1,22 @@
 package com.mmstq.mduarchive.database
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import dagger.Module
+import javax.inject.Singleton
 
 @Dao
-interface NoticeDao{
+interface NoticeDao {
 
-    @Query("select * from notice where source like :from")
-    fun getNotice(from:String): LiveData<List<NoticeEntity>>
+    @Query("select * from notice where source like :from limit 50")
+    fun getNotice(from: String): LiveData<List<NoticeEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll( noticeDB: List<NoticeEntity>)
+    fun insertAll(noticeDB: List<NoticeEntity>)
 }
 
-
+@Module
 @Database(entities = [NoticeEntity::class], version = 1)
-abstract class NoticeDatabase: RoomDatabase() {
+abstract class NoticeDatabase : RoomDatabase() {
     abstract val noticeDao: NoticeDao
-}
-
-private lateinit var INSTANCE: NoticeDatabase
-
-fun getDatabase(context: Context): NoticeDatabase {
-    synchronized(NoticeDatabase::class.java) {
-        if (!::INSTANCE.isInitialized) {
-            INSTANCE = Room.databaseBuilder(context.applicationContext,
-                NoticeDatabase::class.java,
-                "notice").build()
-        }
-    }
-    return INSTANCE
 }

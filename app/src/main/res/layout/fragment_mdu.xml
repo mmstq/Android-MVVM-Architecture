@@ -3,31 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:id="@+id/refresh"
         android:layout_height="match_parent">
 
-
-        <RelativeLayout
+        <com.mmstq.mduarchive.utility.NestedScrollableHost
             android:layout_width="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:layout_height="match_parent"
-            tools:context=".fragment.MDU">
+            android:layout_height="match_parent">
 
-
-            <androidx.recyclerview.widget.RecyclerView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:id="@+id/archive_list"
+                android:background="@color/colorPrimaryDark"
                 android:layout_height="match_parent"
-                android:layout_marginStart="5dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </RelativeLayout>
+                tools:context=".fragment.MDU">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:id="@+id/archive_list"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </RelativeLayout>
+
+
+        </com.mmstq.mduarchive.utility.NestedScrollableHost>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

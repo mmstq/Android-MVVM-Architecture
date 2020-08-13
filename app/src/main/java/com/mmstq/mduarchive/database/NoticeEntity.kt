@@ -13,7 +13,8 @@ data class NoticeEntity constructor(
     var link: String = "",
     var title: String = "",
     var date: String = "",
-    var source: String = ""
+    var source: String = "",
+    var storedOn:Double
 )
 
 
@@ -22,7 +23,8 @@ fun List<NoticeEntity>.asDomainModel(): List<Notice> {
         Notice(
             title = it.title,
             date = it.date,
-            link = it.link)
+            link = it.link,
+            storedOn = it.storedOn)
     }
 }
 

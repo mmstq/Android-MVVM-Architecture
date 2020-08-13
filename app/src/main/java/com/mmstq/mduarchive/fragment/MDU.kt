@@ -1,5 +1,6 @@
 package com.mmstq.mduarchive.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -19,11 +20,17 @@ import com.mmstq.mduarchive.R
 import com.mmstq.mduarchive.adapter.ArchiveAdapter
 import com.mmstq.mduarchive.adapter.NoticeListener
 import com.mmstq.mduarchive.databinding.FragmentMduBinding
+import com.mmstq.mduarchive.model.Notice
 import com.mmstq.mduarchive.utility.Util
 import com.mmstq.mduarchive.viewModel.MDUViewModel
+import com.mmstq.mduarchive.viewModel.UIETViewModel
+import com.mmstq.mduarchive.viewModel.ViewModelFactory
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 
-class MDU : Fragment() {
+class MDU : DaggerFragment() {
 
     private lateinit var binding: FragmentMduBinding
     private var adapter: ArchiveAdapter? = null
@@ -46,24 +53,27 @@ class MDU : Fragment() {
             }).build()
     }
 
-    private val viewModel: MDUViewModel by lazy {
-        val activity = requireNotNull(this.activity) { "Not allowed" }
-        ViewModelProvider(
-            this,
-            MDUViewModel.Factory(activity.application)
-        ).get(MDUViewModel::class.java)
-    }
+    @Inject
+    lateinit var viewModel:MDUViewModel
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mdu, container, false)
+        viewModel = viewModelFactory.create(viewModel::class.java)
         binding.lifecycleOwner = viewLifecycleOwner
-        adapter = ArchiveAdapter(NoticeListener {
+        adapter = ArchiveAdapter(NoticeListener { _: View, notice: Notice ->
             try {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it.link))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(notice.link))
                 startActivity(intent)
             } catch (e: Exception) {
                 Toast.makeText(context, "No application found", Toast.LENGTH_LONG).show()
@@ -124,6 +134,7 @@ class MDU : Fragment() {
         })
         return binding.root
     }
+
 
     private fun showSnacks() {
         snackBar.show()

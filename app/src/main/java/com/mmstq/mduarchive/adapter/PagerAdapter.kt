@@ -6,7 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mmstq.mduarchive.fragment.MDU
 import com.mmstq.mduarchive.fragment.UIET
 
-class PagerAdapter(fm: AppCompatActivity): FragmentStateAdapter(fm){
+class PagerAdapter(activity: AppCompatActivity): FragmentStateAdapter(activity){
     override fun getItemCount(): Int {
         return 2
     }

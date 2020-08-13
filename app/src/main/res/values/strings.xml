@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MDU Archive</string>
+    <string name="default_notification_channel_id">11</string>
 </resources>
